@@ -6,5 +6,5 @@ import springstudy.toyproject1.member.Post;
 import java.util.Optional;
 
 public interface PostRepository extends JpaRepository<Post, Long> {
-    public Optional<Post> findByTitle(String title);
+    Optional<Post> findByTitle(String title);
 }

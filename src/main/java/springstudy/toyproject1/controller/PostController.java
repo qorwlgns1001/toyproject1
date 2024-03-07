@@ -25,8 +25,7 @@ public class PostController {
     //ID로 리스트 찾기
     @GetMapping("/posts/{id}")
     public Optional<Post> findPostById(@PathVariable("id") Long id) {
-        Optional<Post> findPost = postRepository.findById(id);
-        return findPost;
+        return postRepository.findById(id);
     }
 
     //모든 리스트 찾기
@@ -39,8 +38,7 @@ public class PostController {
     //제목으로 리스트 찾기
     @GetMapping("/posts/{title}")
     public Optional<Post> findPostByTitle(@PathVariable("title") String title) {
-        Optional<Post> findPost = postRepository.findByTitle(title);
-        return findPost;
+        return postRepository.findByTitle(title);
     }
 
     //리스트 저장
