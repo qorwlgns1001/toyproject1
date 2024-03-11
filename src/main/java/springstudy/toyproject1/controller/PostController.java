@@ -23,7 +23,7 @@ public class PostController {
     }
 
     //ID로 리스트 찾기
-    @GetMapping("/posts/{id}")
+    @GetMapping("/posts/id/{id}")
     public Optional<Post> findPostById(@PathVariable("id") Long id) {
         return postRepository.findById(id);
     }
@@ -36,7 +36,7 @@ public class PostController {
 
 
     //제목으로 리스트 찾기
-    @GetMapping("/posts/{title}")
+    @GetMapping("/posts/title/{title}")
     public Optional<Post> findPostByTitle(@PathVariable("title") String title) {
         return postRepository.findByTitle(title);
     }
