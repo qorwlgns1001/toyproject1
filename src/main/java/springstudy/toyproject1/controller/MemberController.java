@@ -1,9 +1,14 @@
 package springstudy.toyproject1.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+import springstudy.toyproject1.dto.MemberDTO;
 import springstudy.toyproject1.member.Member;
 import springstudy.toyproject1.repository.MemberRepository;
+import springstudy.toyproject1.service.MemberService;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,11 +17,12 @@ import java.util.Optional;
 public class MemberController {
 
     MemberRepository memberRepository;
-    Member member;
+    MemberService memberService;
 
     @Autowired
-    public MemberController(MemberRepository memberRepository) {
+    public MemberController(MemberRepository memberRepository, MemberService memberService) {
         this.memberRepository = memberRepository;
+        this.memberService = memberService;
     }
 
     @GetMapping("/member/{id}")
@@ -31,10 +37,12 @@ public class MemberController {
         return memberList;
     }
 
-    @PostMapping("/member/join")
-    public void saveMember(@RequestParam("email") String email, @RequestParam("password") String password, @RequestParam("nickname") String nickname) throws Exception {
-        member = new Member(email, password, nickname);
-        memberRepository.save(member);
+    @PostMapping("/join")
+    public String join(MemberDTO memberDTO) {
+        if (memberService.join(memberDTO)) {
+            return "OK";
+        }
+        return "Join Failed";
     }
 
 }

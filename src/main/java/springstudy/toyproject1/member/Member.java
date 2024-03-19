@@ -12,7 +12,7 @@ import lombok.*;
 public class Member {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NonNull
@@ -26,4 +26,7 @@ public class Member {
     @NonNull
     @Column(unique = true, nullable = false)
     private String nickname;
+
+    @Column(nullable = false)
+    private String role;
 }
